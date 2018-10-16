@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:animated_background/animated_background.dart';
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -67,30 +70,44 @@ class _LoginPageState extends State<LoginPage>{
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Flutter Login')
-      ),
-      body: new Container(
-        padding: EdgeInsets.all(16.0),
-          child: new Form(
-            key: formKey,
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: buildInputs()+buildSubmitButtons(),
+      resizeToAvoidBottomPadding: false,
+      body: new Material(
+
+          child: new InkWell(
+
+              onTap: (){},
+              child: Container(
+                padding: EdgeInsets.fromLTRB(20.0,100.0,20.0,0.0),
+                child: new Form(
+                  key: formKey,
+                  child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: buildInputs()+buildSubmitButtons(),
+                  )
+                )
+              )
             )
           )
-      )
-    );
+        );
   }
   List<Widget> buildInputs(){
     return[
+    new IconButton(
+      // Use the FontAwesomeIcons class for the IconData
+        icon: new Icon(FontAwesomeIcons.hotel , size: 100.0 , color:const Color(0xff7c94b6)),  //0xff7c94b6  0xFFA67563
+    ),
+      new SizedBox(height: 100.0),
       new TextFormField(
-        decoration: new InputDecoration(labelText:'Email'),
+        decoration: new InputDecoration(labelText:'Email',contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),),
         validator: (value) => value.isEmpty ? 'Email can\'t be empty': null,
         onSaved: (value) => _email = value,
+
       ),
+      new SizedBox(height: 8.0),
       new TextFormField(
-        decoration: new InputDecoration(labelText:'Password'),
+        decoration: new InputDecoration(labelText:'Password',contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),),
         validator: (value) => value.isEmpty ? 'Password can\'t be empty': null,
         onSaved: (value) => _password = value,
         obscureText: true,
@@ -101,25 +118,33 @@ class _LoginPageState extends State<LoginPage>{
   List<Widget> buildSubmitButtons(){
     if(_formType == FormType.login){
       return[
+        new SizedBox(height: 15.0),
         new RaisedButton(
-          child: new Text('Login', style: new TextStyle(fontSize: 20.0)),
+          child: new Text('Log In', style: new TextStyle(fontSize: 20.0, color: Colors.white, fontFamily: 'Nunito')),
           onPressed: validateAndSubmit,
+          color: Colors.lightBlueAccent,
+            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
         ),
-        new FlatButton(
+        new RaisedButton(
             onPressed: moveToRegister,
-            child: new Text('Create an account',style: new TextStyle(fontSize:20.0))
+            child: new Text('Create an account',style: new TextStyle(fontSize:20.0, color: Colors.white, fontFamily: 'Nunito')),
+            color: Colors.lightBlueAccent,
+            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
         )
       ];
     }
    else{
       return[
+        new SizedBox(height: 15.0),
         new RaisedButton(
-          child: new Text('Create an account', style: new TextStyle(fontSize: 20.0)),
+          child: new Text('Create an account', style: new TextStyle(fontSize: 20.0, color: Colors.white,fontFamily: 'Nunito'), ),
           onPressed: validateAndSubmit,
+          color: Colors.lightBlueAccent,
         ),
-        new FlatButton(
+        new RaisedButton(
             onPressed: moveToLogin,
-            child: new Text('Have an account? Login',style: new TextStyle(fontSize:20.0))
+            child: new Text('Have an account? Log In',style: new TextStyle(fontSize:20.0, color: Colors.white,fontFamily: 'Nunito')),
+            color: Colors.lightBlueAccent,
         )
       ];
     }
