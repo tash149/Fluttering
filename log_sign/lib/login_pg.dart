@@ -14,7 +14,35 @@ enum FormType{
   register
 }
 
-class _LoginPageState extends State<LoginPage>{
+class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
+  static const numBehaviours = 6;
+
+
+  ParticleOptions particleOptions = ParticleOptions(
+    baseColor: Colors.lightGreenAccent,
+    spawnOpacity: 0.0,
+    opacityChangeRate: 0.25,
+    minOpacity: 0.2,
+    maxOpacity: 0.4,
+    spawnMinSpeed: 30.0,
+    spawnMaxSpeed: 70.0,
+    spawnMinRadius: 7.0,
+    spawnMaxRadius: 15.0,
+    particleCount: 45,
+  );
+
+  var particlePaint = Paint()
+    ..style = PaintingStyle.fill
+    ..strokeWidth = 1.0;
+
+
+
+
+  // General Variables
+  int _behaviourIndex = 0;
+  Behaviour _behaviour;
+
+
   final formKey = new GlobalKey<FormState>();
 
   String _email;
@@ -67,29 +95,35 @@ class _LoginPageState extends State<LoginPage>{
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       body: new Material(
-
-          child: new InkWell(
-
-              onTap: (){},
-              child: Container(
-                padding: EdgeInsets.fromLTRB(20.0,100.0,20.0,0.0),
-                child: new Form(
-                  key: formKey,
-                  child: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: buildInputs()+buildSubmitButtons(),
-                  )
+        child: new InkWell(
+          onTap: (){},
+          child: AnimatedBackground(
+            behaviour: _behaviour = _buildBehaviour(),
+            vsync: this,
+            child: Container(
+              padding: EdgeInsets.fromLTRB(20.0,100.0,20.0,0.0),
+              child: new Form(
+                key: formKey,
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: buildInputs()+buildSubmitButtons(),
                 )
-              )
-            )
+              ),
+            ),
           )
-        );
+        )
+      ),
+    );
   }
+
+
+
   List<Widget> buildInputs(){
     return[
     new IconButton(
@@ -149,4 +183,19 @@ class _LoginPageState extends State<LoginPage>{
       ];
     }
   }
+
+
+  Behaviour _buildBehaviour() {
+    return RandomParticleBehaviour(
+      options: particleOptions,
+      paint: particlePaint,
+    );
+  }
+
+
+}
+
+enum ParticleType {
+  Shape,
+  Image,
 }
