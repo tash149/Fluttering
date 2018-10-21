@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:animated_background/animated_background.dart';
-
+import 'auth.dart';
 
 class LoginPage extends StatefulWidget {
+  LoginPage({this.auth});
+  final BaseAuth auth;
+
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
 }
@@ -65,14 +68,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
       print('Validate and Save');
       try {
         if(_formType == FormType.login) {
-          print('Login');
-          FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password); //asynchous and returns a firebase user
-          print('Signed in: ${user.uid}');
+          String userId = await widget.auth.signInWithEmailAndPassword(_email, _password); //asynchous and returns a firebase user
+          print('Signed in: $userId');
         }
         else{
-          print('Create');
-          FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email, password: _password);
-          print('Registered User: ${user.uid}');
+          String userId = await widget.auth.createUserWithEmailAndPassword(_email , _password);
+          print('Registered User: $userId');
         }
       }
       catch(e){
