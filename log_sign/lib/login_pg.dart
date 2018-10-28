@@ -5,8 +5,9 @@ import 'package:animated_background/animated_background.dart';
 import 'auth.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({this.auth});
+  LoginPage({this.auth, this.onSignedIn});
   final BaseAuth auth;
+  final VoidCallback onSignedIn; //VoidCallback takes no parameters and returns no parameters
 
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
@@ -75,6 +76,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
           String userId = await widget.auth.createUserWithEmailAndPassword(_email , _password);
           print('Registered User: $userId');
         }
+        widget.onSignedIn();
       }
       catch(e){
         print('Error: $e');
