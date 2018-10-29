@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_pg.dart';
 import 'auth.dart';
+import 'home_pg.dart';
 
 class RootPage extends StatefulWidget{
   RootPage({this.auth});
@@ -22,7 +23,7 @@ class _RootPageState extends State<RootPage>{
     super.initState();
     widget.auth.currentUser().then((userId){  //could have used await but init State doesn't support async method and await
       setState((){
-        //authStatus = userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
+        authStatus = userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
       });
     });
   }
@@ -30,6 +31,12 @@ class _RootPageState extends State<RootPage>{
   void _signedIn(){
     setState(() {
       authStatus = AuthStatus.signedIn;
+    });
+  }
+
+  void _signedOut(){
+    setState(() {
+      authStatus = AuthStatus.notSignedIn;
     });
   }
 
@@ -42,10 +49,9 @@ class _RootPageState extends State<RootPage>{
             onSignedIn: _signedIn ,
         );
       case AuthStatus.signedIn:
-        return new Scaffold(
-          body:  new Container(
-          child: new Text("WELCOME")
-          )
+        return new HomePage(
+          auth: widget.auth,
+          onSignedOut: _signedOut,
         );
     }
     return new LoginPage(auth: widget.auth);
