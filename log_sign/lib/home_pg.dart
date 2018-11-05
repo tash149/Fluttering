@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'auth.dart';
+import 'welcome_pg.dart';
 
 class HomePage extends StatelessWidget{
   HomePage({this.auth , this.onSignedOut});
@@ -18,14 +19,15 @@ class HomePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return new WelPage();
+    /*return new Scaffold(
       appBar: new AppBar(
         title: new Text('Welcome'),
         actions: <Widget>[
           new FlatButton(
               onPressed: _signOut,
               child: new Text('Log Out',style: new TextStyle(fontSize: 17.0, color: Colors.white))
-          )
+          ),
         ]
       ),
       body: new Container(
@@ -33,6 +35,6 @@ class HomePage extends StatelessWidget{
           child: new Text('Welcome', style: new TextStyle(fontSize: 32.0))
         ),
       )
-    );
+    );*/
   }
 }
