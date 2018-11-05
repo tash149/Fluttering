@@ -3,10 +3,10 @@ import 'auth.dart';
 import 'splash_sc/Page0.dart';
 import 'splash_sc/Page1.dart';
 import 'splash_sc/Page2.dart';
-//import 'Profile.dart';
+
 
 PageController pageControl;
-WelPage obj;
+
 
 class WelPage extends StatefulWidget {
   WelPage({this.auth , this.onSignedOut});
@@ -39,44 +39,17 @@ class _WelPageState extends State<WelPage> {
         appBar: new AppBar(title: new Text('Tourista'), centerTitle: true,
             actions: <Widget>[
               new FlatButton(
-                  onPressed: obj._signOut,
+                  onPressed: widget._signOut,
                   child: new Text('Log Out',style: new TextStyle(fontSize: 17.0, color: Colors.white))
               ),
             ]
         ),
-        body: new PageView(children: [
-          new Page0(),
-          new Page1(),
-          new Page2(),
-        ], controller: pageControl, onPageChanged: onPageChange),
-        bottomNavigationBar: new BottomNavigationBar(
-          items: [
-            /*new BottomNavigationBarItem(
-              icon: new Icon(Icons.desktop_mac),
-              title: new Text('Company\nProjects'),
-            ),*/
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.account_balance),
-              title: new Text('University\nProjects'),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.check),
-              title: new Text('Practice Zone'),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                title: Text('Profile')
-            )
-          ],
-          onTap: navTapped,
-          currentIndex: page,
-          type: BottomNavigationBarType.fixed,
-        ));
+        body: new Page2() ,
+        );
   }
 
   @override
   void initState() {
-    obj = new WelPage();
     super.initState();
     pageControl = new PageController();
   }
