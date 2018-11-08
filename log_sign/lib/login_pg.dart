@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
       print('Validate and Save');
       try {
         if(_formType == FormType.login) {
-          String userId = await widget.auth.signInWithEmailAndPassword(_email, _password); //asynchous and returns a firebase user
+          String userId = await widget.auth.signInWithEmailAndPassword(_email, _password); //asynchronous and returns a firebase user
           print('Signed in: $userId');
         }
         else{
