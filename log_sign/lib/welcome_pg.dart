@@ -40,7 +40,7 @@ class _WelPageState extends State<WelPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text('Basketiers'), centerTitle: true,
+        appBar: new AppBar(title: new Text('Tourista'), centerTitle: true,
             actions: <Widget>[
               new FlatButton(
                   onPressed: widget._signOut,
@@ -61,11 +61,11 @@ class _WelPageState extends State<WelPage> {
             ),*/
           new BottomNavigationBarItem(
             icon: new Icon(Icons.account_balance),
-            title: new Text('Availaible\nItems'),
+            title: new Text('Availaible\nPlaces'),
           ),
           new BottomNavigationBarItem(
             icon: new Icon(Icons.check),
-            title: new Text('Checklist'),
+            title: new Text('Your\nDestinations'),
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.person),

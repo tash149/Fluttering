@@ -131,7 +131,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
     return[
     new IconButton(
       // Use the FontAwesomeIcons class for the IconData
-        icon: new Icon(FontAwesomeIcons.cookie , size: 100.0 , color:const Color(0xff4d342a)),  //0xff7c94b6  0xFFA67563
+        icon: new Icon(FontAwesomeIcons.hotel , size: 100.0 , color:const Color(0xff7c94b6)),  //0xff7c94b6  0xFFA67563  0xff4d342a
     ),
       new SizedBox(height: 100.0),
       new TextFormField(
