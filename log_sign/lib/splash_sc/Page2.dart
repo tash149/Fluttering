@@ -10,7 +10,7 @@ class Page2 extends StatelessWidget {
           child: new Column(
             // center the children
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+            /*children: <Widget>[
               new Icon(
                 Icons.airport_shuttle,
                 size: 160.0,
@@ -20,7 +20,7 @@ class Page2 extends StatelessWidget {
                 "Third Tab",
                 style: new TextStyle(color: Colors.white),
               )
-            ],
+            ],*/
           ),
         ),
       ),

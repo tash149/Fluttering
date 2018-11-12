@@ -4,7 +4,7 @@ import 'auth.dart';
 import 'root_page.dart';
 import 'home_pg.dart';
 import 'welcome_pg.dart';
-import'temp.dart';
+import'places.dart';
 
 void main(){
   runApp(new MyApp());
@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget{
           '/HomePg': (BuildContext context) => new HomePage(),
           '/WelcomePg': (BuildContext context) => new WelPage(),
           '/LogInPg':(BuildContext context) => new LoginPage(auth: new Auth()),
-          '/TempPg':(BuildContext context) => new TempPg()
           },
       );
   }
