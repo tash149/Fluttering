@@ -6,6 +6,8 @@ import 'home_pg.dart';
 import 'welcome_pg.dart';
 import'places.dart';
 
+//secret: sk.eyJ1IjoidGFzaDE0OSIsImEiOiJjam9mdW96b3YwN3FsM2ttdWhoaGdzZjZ1In0.sPk6_xr99OB8bhgtmB0hxQ
+//public: pk.eyJ1IjoidGFzaDE0OSIsImEiOiJjam9mdW5wazAwNjl0M3Ftd2w3NjkwOGs0In0.RbHY8nycZDav-6P5pDPcZA
 void main(){
   runApp(new MyApp());
 }

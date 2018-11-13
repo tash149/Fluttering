@@ -39,7 +39,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/logo.png
+    - assets/map.jpg
   fonts:
       - family: Nunito
         fonts:
