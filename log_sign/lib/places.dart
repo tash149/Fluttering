@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'places_card.dart';
 
 class Places extends StatefulWidget {
   @override
@@ -23,6 +24,10 @@ class _PlacesState extends State<Places> {
     return qn.documents;
   }
 
+  navigateToDetail(DocumentSnapshot post){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>PlaceCardWidget(post: post)));
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,22 +48,26 @@ class _PlacesState extends State<Places> {
               itemCount: docsnapshot.data.length,
                 itemBuilder: (_,index){
                 return ListTile(
-
+                  onTap: ()=> navigateToDetail(docsnapshot.data[index]),
                   leading: new Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
+                      child:new Card(
+
+                    /*padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     //padding: EdgeInsets.only(right: 12.0),
                     decoration: new BoxDecoration(
                       shape: BoxShape.rectangle,
                       borderRadius:new BorderRadius.circular(5.0),
-                      color: Colors.white30,
+                      color: Colors.white,
 
-                    ),
+                    ),*/
                     child:new Container(
-                        child:Text(docsnapshot.data[index].data["placeName"],
+                        child: Text(docsnapshot.data[index].data["placeName"],
                             style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)
                         ),
                       alignment: Alignment(0.0, 0.0),
                     )
+                  )
                   )
                );
            });
@@ -68,3 +77,6 @@ class _PlacesState extends State<Places> {
     );
   }
 }
+
+
+
