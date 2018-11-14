@@ -3,19 +3,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'data/places_data.dart';
 
 
+
 class PlaceCardWidget extends StatefulWidget {
   //final PlaceDetail placeDetail;
   final DocumentSnapshot post;
   PlaceCardWidget({this.post});
   @override
   _PlaceCardWidgetState createState() => _PlaceCardWidgetState();
-
-
 }
 
 class _PlaceCardWidgetState extends State<PlaceCardWidget> {
 
 
+
+  final DocumentReference documentReference = Firestore.instance.document("user/pTq8Tl2KuWgYEpblue6453LgCpm1");
+  void _add(place) {
+    Map<String, String> data = <String, String>{
+      "place_Name": place,
+    };
+    documentReference.setData(data).whenComplete(() {
+      print("Document Added");
+    }).catchError((e) => print(e));
+  }
 
 
 
@@ -44,16 +53,26 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
                 ),
               ),
             ),
-            new RaisedButton(
-                elevation: 5.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0)),
-                onPressed: null,
-                color: Colors.blue,
-                //splashColor: Colors.lightBlueAccent,
-                child: Text('Apply',
-                  style: TextStyle(color: Colors.white),),
-            )
+            new Builder(
+                  builder: (context) =>new RaisedButton(
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0)),
+                    onPressed: (){
+                      _add(widget.post.data["placeName"]);
+                      final snackBar = SnackBar(
+                        content: Text('Applied Successfully'),
+                        backgroundColor: Colors.green,
+                      );
+                      // Find the Scaffold in the Widget tree and use it to show a SnackBar!
+                      Scaffold.of(context).showSnackBar(snackBar);
+                    },
+                    color: Colors.blue,
+                    //splashColor: Colors.lightBlueAccent,
+                    child: Text('Apply',
+                      style: TextStyle(color: Colors.white),),
+                ),
+              )
             ]
           )
         );

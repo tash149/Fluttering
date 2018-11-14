@@ -1,29 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calendar/flutter_calendar.dart';
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 
-class Page2 extends StatelessWidget {
+class Page2 extends StatefulWidget {
+  @override
+  _Page2State createState() => new _Page2State();
+}
+
+class _Page2State extends State<Page2> {
+
+  Map<DateTime, int> _markedDateMap = {
+    DateTime(2018, 10, 11) : 1,
+  };
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      backgroundColor: Colors.orange,
-      body: new Container(
-        child: new Center(
-          child: new Column(
-            // center the children
-            mainAxisAlignment: MainAxisAlignment.center,
-            /*children: <Widget>[
-              new Icon(
-                Icons.airport_shuttle,
-                size: 160.0,
-                color: Colors.white,
-              ),
-              new Text(
-                "Third Tab",
-                style: new TextStyle(color: Colors.white),
-              )
-            ],*/
-          ),
-        ),
-      ),
-    );
+    return new CalendarCarousel(markedDatesMap: _markedDateMap,);
   }
 }
