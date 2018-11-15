@@ -17,9 +17,11 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
 
 
   final DocumentReference documentReference = Firestore.instance.document("user/pTq8Tl2KuWgYEpblue6453LgCpm1");
-  void _add(place) {
+  void _add(place, url, desc) {
     Map<String, String> data = <String, String>{
       "place_Name": place,
+      "url_dest": url,
+      "desc": desc,
     };
     documentReference.setData(data).whenComplete(() {
       print("Document Added");
@@ -59,7 +61,7 @@ class _PlaceCardWidgetState extends State<PlaceCardWidget> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0)),
                     onPressed: (){
-                      _add(widget.post.data["placeName"]);
+                      _add(widget.post.data["placeName"], widget.post.data["url"], widget.post.data["content"]);
                       final snackBar = SnackBar(
                         content: Text('Applied Successfully'),
                         backgroundColor: Colors.green,

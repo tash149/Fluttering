@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar/flutter_calendar.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
+
+
 
 class Page2 extends StatefulWidget {
   @override
@@ -8,9 +9,8 @@ class Page2 extends StatefulWidget {
 }
 
 class _Page2State extends State<Page2> {
-
   Map<DateTime, int> _markedDateMap = {
-    DateTime(2018, 10, 11) : 1,
+    DateTime(2018, 12, 12) : 1,
   };
 
   @override
